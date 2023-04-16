@@ -1,0 +1,20 @@
+from pydub import AudioSegment
+from pydub.generators import Kick, Snare, Hat
+
+# Define tempo and duration
+tempo = 100
+duration = 2000  # milliseconds
+
+# Create the individual tracks
+kick = Kick().to_audio_segment(duration=duration)
+snare = Snare().to_audio_segment(duration=duration)
+hat = Hat().to_audio_segment(duration=duration)
+
+# Combine the tracks to create the beat
+beat = kick + snare + hat
+
+# Set the tempo of the beat
+beat = beat.set_frame_rate(tempo)
+
+# Export the beat to an audio file
+beat.export("my_beat.mp3", format="mp3")
